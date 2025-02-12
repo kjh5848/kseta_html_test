@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국OO협회</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Top Bar */
+        .topbar {
+            background-color: #1a4785;
+            padding: 8px 0;
+        }
+
+        .topbar__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: right;
+        }
+
+        .topbar__link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: 20px;
+        }
+
+        /* Header */
+        .header {
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 100;
+        }
+
+        .header__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header__logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header__nav {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .header__nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .header__nav-link:hover {
+            color: #1a4785;
+        }
+
+        /* Visual */
+        .visual {
+            background: linear-gradient(135deg, #1a4785 0%, #2c5282 100%);
+            color: white;
+            padding: 100px 0;
+        }
+
+        .visual__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .visual__title {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .visual__text {
+            font-size: 18px;
+            max-width: 600px;
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section__title {
+            font-size: 28px;
+            color: #1a4785;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #1a4785;
+        }
+
+        /* Notice Grid */
+        .news {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .news__item {
+            border: 1px solid #e0e0e0;
+            padding: 25px;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .news__item:hover {
+            transform: translateY(-5px);
+        }
+
+        .news__date {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .news__title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Service Grid */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .service__item {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .service__item:hover {
+            background: #e9ecef;
+        }
+
+        .service__title {
+            color: #1a4785;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 40px;
+        }
+
+        .footer__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer__title {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer__links {
+            list-style: none;
+        }
+
+        .footer__link {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .footer__link:hover {
+            color: white;
+        }
+
+        .footer__bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        @media (max-width: 768px) {
+            .news {
+                grid-template-columns: 1fr;
+            }
+
+            .services {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header__container">
+            <div class="header__logo">한국OO협회</div>
+            <nav>
+                <ul class="header__nav">
+                    <li><a href="#" class="header__nav-link">협회소개</a></li>
+                    <li><a href="#" class="header__nav-link">주요사업</a></li>
+                    <li><a href="#" class="header__nav-link">교육정보</a></li>
+                    <li><a href="#" class="header__nav-link">자격증</a></li>
+                    <li><a href="#" class="header__nav-link">정보마당</a></li>
+                    <li><a href="#" class="header__nav-link">회원광장</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="visual">
+        <div class="visual__container">
+            <h1 class="visual__title">한국OO협회</h1>
+            <p class="visual__text">전문성과 신뢰성을 바탕으로 대한민국 OO산업의 발전을 선도하는 한국OO협회입니다.</p>
+        </div>
+    </div>
+
+    <main class="main">
+        <section class="section">
+            <h2 class="section__title">공지사항</h2>
+            <div class="news">
+                <div class="news__item">
+                    <div class="news__date">2025.02.10</div>
+                    <h3 class="news__title">2025년 자격검정 시행 일정 안내</h3>
+                    <p>2025년도 OO자격검정 시행 일정이 확정되었습니다.</p>
+                </div>
+                <div class="news__item">
+                    <div class="news__date">2025.02.08</div>
+                    <h3 class="news__title">제53회 정기총회 개최 안내</h3>
+                    <p>2025년 정기총회가 3월 15일에 개최됩니다.</p>
+                </div>
+                <div class="news__item">
+                    <div class="news__date">2025.02.05</div>
+                    <h3 class="news__title">2025 산업전문가 양성과정 모집</h3>
+                    <p>OO산업 전문가 양성을 위한 교육과정 참가자를 모집합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section__title">주요 서비스</h2>
+            <div class="services">
+                <div class="service__item">
+                    <h3 class="service__title">자격증 신청</h3>
+                    <p>OO자격증 취득을 위한 원서접수</p>
+                </div>
+                <div class="service__item">
+                    <h3 class="service__title">교육신청</h3>
+                    <p>전문교육 과정 신청</p>
+                </div>
+                <div class="service__item">
+                    <h3 class="service__title">회원가입</h3>
+                    <p>협회 회원 가입 안내</p>
+                </div>
+                <div class="service__item">
+                    <h3 class="service__title">자료실</h3>
+                    <p>각종 양식 및 정보자료</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__grid">
+                <div>
+                    <h3 class="footer__title">한국OO협회</h3>
+                    <p>
+                        서울특별시 OO구 OO로 123<br>
+                        TEL : 02-123-4567<br>
+                        FAX : 02-123-4568<br>
+                        E-mail : info@association.or.kr
+                    </p>
+                </div>
+                <div>
+                    <h3 class="footer__title">협회소개</h3>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">인사말</a></li>
+                        <li><a href="#" class="footer__link">연혁</a></li>
+                        <li><a href="#" class="footer__link">조직도</a></li>
+                        <li><a href="#" class="footer__link">오시는 길</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer__title">정보마당</h3>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">공지사항</a></li>
+                        <li><a href="#" class="footer__link">보도자료</a></li>
+                        <li><a href="#" class="footer__link">정책정보</a></li>
+                        <li><a href="#" class="footer__link">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer__title">관련사이트</h3>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">관련부처</a></li>
+                        <li><a href="#" class="footer__link">유관기관</a></li>
+                        <li><a href="#" class="footer__link">자격증 확인</a></li>
+                        <li><a href="#" class="footer__link">교육이력 확인</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>Copyright © 2025 한국OO협회. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

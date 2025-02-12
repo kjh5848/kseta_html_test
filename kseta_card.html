@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>KSETA - IT Services</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="base_style.css">
+    <link rel="stylesheet" href="gdic_style_v1.1.css">
+
+    <style>
+        .kseta-cards {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .kseta-card {
+            position: relative;
+            margin-bottom: 30px;
+            height: 500px;
+            /* 카드 높이 고정 */
+        }
+
+        .kseta-card__gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #382f83 0%, #4a4475 100%);
+            border-radius: 15px;
+            transform: rotate(1deg);
+            transition: transform 0.3s ease;
+        }
+
+        .kseta-card:hover .kseta-card__gradient {
+            transform: rotate(2deg);
+        }
+
+        .kseta-card__content {
+            position: relative;
+            background: #fff;
+            border-radius: 15px;
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .kseta-card__icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .kseta-card:hover .kseta-card__icon {
+            transform: scale(1.1);
+        }
+
+        .kseta-card__icon-image {
+            width: 40px;
+            height: 40px;
+        }
+
+        .kseta-card__title {
+            color: #333;
+            font-family: 'Pretendard_b';
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .kseta-card__subtitle {
+            color: #382f83;
+            font-family: 'Pretendard_m';
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .kseta-card__list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .kseta-card__list-item {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.75rem;
+            color: #666;
+            font-family: 'Pretendard_r';
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .kseta-card__list-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6em;
+            width: 4px;
+            height: 4px;
+            background-color: #382f83;
+            border-radius: 50%;
+        }
+
+        
+        .kseta-card__action {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .kseta-card__action-content {
+            height: 100%;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kseta-card__gradient {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .kseta-card__action:hover .service-card__gradient {
+            opacity: 1;
+        }
+
+        .kseta-card__action-default {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .kseta-card__action-icon {
+            width: 4rem;
+            height: 4rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .kseta-card__action:hover .service-card__action-icon {
+            border-color: white;
+        }
+
+        .kseta-card__action-text {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .kseta-card__action-details {
+            display: none;
+            text-align: center;
+            color: white;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .kseta-card__action.active .kseta-card__action-default {
+            display: none;
+        }
+
+        .kseta-card__action.active .kseta-card__action-details {
+            display: block;
+        }
+
+        /* Colors for gradients */
+        .gradient-blue-indigo {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+        }
+
+        .gradient-purple-pink {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+        }
+
+        .gradient-green-teal {
+            background: linear-gradient(135deg, #10b981, #14b8a6);
+        }
+
+        .gradient-orange-red {
+            background: linear-gradient(135deg, #f97316, #ef4444);
+        }
+    </style>
+</head>
+
+<body>
+
+
+    
+    <div class="kseta-cards">
+        <div class="container">
+            <div class="row">
+                <!-- 카드 1 -->
+                <div class="col-md-6">
+                    <div class="kseta-card">
+                        <div class="kseta-card__gradient"></div>
+                        <div class="kseta-card__content">
+                            <div class="kseta-card__icon">
+                                <svg class="kseta-card__icon-image" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M12 6V12L16 14M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" />
+                                </svg>
+                            </div>
+                            <h3 class="kseta-card__title">IT 장비 및 자원프로그램</h3>
+                            <p class="kseta-card__subtitle">솔루션기술 개발</p>
+                            <ul class="kseta-card__list">
+                                <li class="kseta-card__list-item">IT 솔루션 및 소프트웨어 관리/개발/서비스</li>
+                                <li class="kseta-card__list-item">시스템 및 업무솔루션 개발과 유지/관리</li>
+                                <li class="kseta-card__list-item">디지털 인프라 기반 구축관리 및 운영지원</li>
+                                <li class="kseta-card__list-item">시스템 및 업무 소프트웨어 관리/시스템지원</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="kseta-card__action">
+                        <div class="kseta-card__action-content">
+                            <div class="kseta-card__gradient gradient-blue-indigo"></div>
+                            <div class="kseta-card__action-details">
+                                <h4 class="text-xl font-bold mb-4">더 알아보기</h4>
+                                <p class="mb-4">상세 정보를 확인하고 싶으시다면 아래 버튼을 클릭하세요.</p>
+                                <button class="px-6 py-2 bg-white text-gray-800 rounded-lg shadow-md hover:bg-gray-100">
+                                    자세히 보기
+                                </button>
+                            </div>
+                            <div class="kseta-card__action-default">
+                                <div class="kseta-card__action-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </div>
+                                <p class="kseta-card__action-text">클릭하여 더 알아보기</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 카드 2 -->
+                <div class="col-md-6">
+                    <div class="kseta-card">
+                        <div class="kseta-card__gradient"></div>
+                        <div class="kseta-card__content">
+                            <div class="kseta-card__icon">
+                                <svg class="kseta-card__icon-image" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+                                </svg>
+                            </div>
+                            <h3 class="kseta-card__title">IT 솔루션과 업무</h3>
+                            <p class="kseta-card__subtitle">컨설팅 서비스</p>
+                            <ul class="kseta-card__list">
+                                <li class="kseta-card__list-item">현장수요맞춤형 컨설팅/분석 서비스</li>
+                                <li class="kseta-card__list-item">구체화 컨설팅과 계획과 관리개선</li>
+                                <li class="kseta-card__list-item">IT솔루션 현장 실무적응과 서비스</li>
+                                <li class="kseta-card__list-item">디지털서비스제품 솔루션/시스템지원/기타</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 카드 3 -->
+                <div class="col-md-6">
+                    <div class="kseta-card">
+                        <div class="kseta-card__gradient"></div>
+                        <div class="kseta-card__content">
+                            <div class="kseta-card__icon">
+                                <svg class="kseta-card__icon-image" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                                </svg>
+                            </div>
+                            <h3 class="kseta-card__title">IT 정책 현황</h3>
+                            <p class="kseta-card__subtitle">취약점 진단</p>
+                            <ul class="kseta-card__list">
+                                <li class="kseta-card__list-item">정책, 법규, 지도에비 따른 관리운영과 분석</li>
+                                <li class="kseta-card__list-item">솔루션과 관리시스템 검진/취약지점</li>
+                                <li class="kseta-card__list-item">절차와, 정책진단과, 시스템의 운영과정별 시책분석/취약지원</li>
+                                <li class="kseta-card__list-item">솔루션과 분석시스템 및 운영 시책진행,개선과 기타</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 카드 4 -->
+                <div class="col-md-6">
+                    <div class="kseta-card">
+                        <div class="kseta-card__gradient"></div>
+                        <div class="kseta-card__content">
+                            <div class="kseta-card__icon">
+                                <svg class="kseta-card__icon-image" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                                </svg>
+                            </div>
+                            <h3 class="kseta-card__title">신뢰관련 네트워크</h3>
+                            <p class="kseta-card__subtitle">시스템 현황</p>
+                            <ul class="kseta-card__list">
+                                <li class="kseta-card__list-item">기본/현재 등장/주요 이슈현황과 과제</li>
+                                <li class="kseta-card__list-item">관련시스템과 현황검증/주요진단/관리</li>
+                                <li class="kseta-card__list-item">취약문제/개선지원/운영체제와 관련 현황 구성</li>
+                                <li class="kseta-card__list-item">시책지원과 현재 인프라시스템과 결과의 환류</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
