@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KsetaSlide - jQuery Version</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .kseta-slide {
+            max-width: 1000px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .kseta-slide__container {
+            display: flex;
+            height: 400px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .kseta-slide__item {
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kseta-slide__item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .kseta-slide__controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .kseta-slide__button {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 0 20px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .kseta-slide__button:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .kseta-slide__indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1;
+        }
+
+        .kseta-slide__indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .kseta-slide__indicator--active {
+            background-color: white;
+        }
+
+        .kseta-slide__autoplay {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            z-index: 1;
+        }
+
+        .kseta-slide__autoplay:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+            /* CSS 추가 부분 */
+    .kseta-slide__content {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 40px;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        color: white;
+        z-index: 1;
+    }
+
+    .kseta-slide__title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .kseta-slide__subtitle {
+        font-size: 16px;
+        opacity: 0.9;
+    }
+    </style>
+</head>
+
+<body>
+    <section class="kseta-slide">
+        <div class="kseta-slide__container">
+            <!-- HTML 수정 부분 -->
+            <div class="kseta-slide__item">
+                <img src="banner1.png" alt="슬라이드 1">
+                <div class="kseta-slide__content">
+                    <h2 class="kseta-slide__title">메인 타이틀 1</h2>
+                    <p class="kseta-slide__subtitle">서브 타이틀 1입니다.</p>
+                </div>
+            </div>
+            <div class="kseta-slide__item">
+                <img src="banner2.png" alt="슬라이드 2">
+            </div>
+            <div class="kseta-slide__item">
+                <img src="banner3.png" alt="슬라이드 3">
+            </div>
+        </div>
+
+        <div class="kseta-slide__controls">
+            <button class="kseta-slide__button kseta-slide__button--prev">←</button>
+            <button class="kseta-slide__button kseta-slide__button--next">→</button>
+        </div>
+
+        <div class="kseta-slide__indicators"></div>
+        <!-- <button class="kseta-slide__autoplay">자동재생 중지</button> -->
+    </section>
+
+    <script>
+        (function ($) {
+            $.fn.ksetaSlide = function (options) {
+                // 기본 옵션
+                const defaults = {
+                    autoplay: true,
+                    interval: 3000,
+                    duration: 500
+                };
+
+                // 사용자 옵션과 기본 옵션 병합
+                const settings = $.extend({}, defaults, options);
+
+                return this.each(function () {
+                    const $slider = $(this);
+                    const $container = $slider.find('.kseta-slide__container');
+                    const $items = $slider.find('.kseta-slide__item');
+                    const $prevBtn = $slider.find('.kseta-slide__button--prev');
+                    const $nextBtn = $slider.find('.kseta-slide__button--next');
+                    const $indicators = $slider.find('.kseta-slide__indicators');
+                    const $autoplayBtn = $slider.find('.kseta-slide__autoplay');
+
+                    let currentSlide = 0;
+                    let isAutoPlaying = settings.autoplay;
+                    let autoPlayInterval;
+
+                    // 초기 설정
+                    function init() {
+                        // 인디케이터 생성
+                        $items.each((index) => {
+                            $indicators.append(
+                                $('<span>')
+                                    .addClass('kseta-slide__indicator')
+                                    .toggleClass('kseta-slide__indicator--active', index === 0)
+                            );
+                        });
+
+                        if (isAutoPlaying) startAutoPlay();
+                        bindEvents();
+                    }
+
+                    // 이벤트 바인딩
+                    function bindEvents() {
+                        $prevBtn.on('click', prevSlide);
+                        $nextBtn.on('click', nextSlide);
+
+                        $slider.find('.kseta-slide__indicator').on('click', function () {
+                            goToSlide($(this).index());
+                        });
+
+                        $autoplayBtn.on('click', toggleAutoPlay);
+                    }
+
+                    // 슬라이드 이동
+                    function moveSlide(index) {
+                        currentSlide = index;
+                        $container.css('transform', `translateX(-${currentSlide * 100}%)`);
+                        updateIndicators();
+                    }
+
+                    function nextSlide() {
+                        currentSlide = (currentSlide + 1) % $items.length;
+                        moveSlide(currentSlide);
+                        resetAutoPlay();
+                    }
+
+                    function prevSlide() {
+                        currentSlide = (currentSlide - 1 + $items.length) % $items.length;
+                        moveSlide(currentSlide);
+                        resetAutoPlay();
+                    }
+
+                    function goToSlide(index) {
+                        moveSlide(index);
+                        resetAutoPlay();
+                    }
+
+                    // 인디케이터 업데이트
+                    function updateIndicators() {
+                        $slider.find('.kseta-slide__indicator').each((index, indicator) => {
+                            $(indicator).toggleClass('kseta-slide__indicator--active', index === currentSlide);
+                        });
+                    }
+
+                    // 자동재생 관련 함수
+                    function startAutoPlay() {
+                        autoPlayInterval = setInterval(nextSlide, settings.interval);
+                        $autoplayBtn.text('자동재생 중지');
+                    }
+
+                    function stopAutoPlay() {
+                        clearInterval(autoPlayInterval);
+                        $autoplayBtn.text('자동재생 시작');
+                    }
+
+                    function resetAutoPlay() {
+                        if (isAutoPlaying) {
+                            stopAutoPlay();
+                            startAutoPlay();
+                        }
+                    }
+
+                    function toggleAutoPlay() {
+                        isAutoPlaying = !isAutoPlaying;
+                        if (isAutoPlaying) {
+                            startAutoPlay();
+                            $autoplayBtn.addClass('kseta-slide__autoplay--playing');
+                        } else {
+                            stopAutoPlay();
+                            $autoplayBtn.removeClass('kseta-slide__autoplay--playing');
+                        }
+                    }
+
+                    // 초기화
+                    init();
+                });
+            };
+        })(jQuery);
+
+        // 사용 예시
+        $(document).ready(function () {
+            $('.kseta-slide').ksetaSlide({
+                autoplay: true,
+                interval: 3000,
+                duration: 500
+            });
+        });
+    </script>
+</body>
+
+</html>

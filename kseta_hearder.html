@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kseta Header</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="kseta-header.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $(document).on("mouseover", ".kseta-header__nav", function () {
+                $('.kseta-header').addClass('kseta-header--expanded');
+                $('.kseta-header__submenu').addClass('kseta-header__submenu--show');
+            });
+
+            $(document).on("mouseout", ".kseta-header__nav", function () {
+                $('.kseta-header').removeClass('kseta-header--expanded');
+                $('.kseta-header__submenu').removeClass('kseta-header__submenu--show');
+            });
+        });
+    </script>
+</head>
+<style>
+    /* kseta-header: BEM Naming 적용 */
+
+/* 최상단 로그인/회원가입 바 */
+.kseta-header__top-bar {
+  background-color: #f8f9fa;
+  padding: 8px 20px;
+  text-align: right;
+}
+
+.kseta-header__top-bar a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  margin-left: 15px;
+}
+
+.kseta-header__top-bar a:hover {
+  color: #0d6efd;
+}
+
+/* 메인 네비게이션 바 */
+.kseta-header {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+}
+
+.kseta-header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.kseta-header__logo img {
+  height: 50px;
+}
+
+.kseta-header__menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.kseta-header__menu-item {
+  position: relative;
+}
+
+.kseta-header__menu-link {
+  text-decoration: none;
+  color: #555;
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: color 0.3s ease;
+}
+
+.kseta-header__menu-link:hover {
+  color: #0d6efd;
+}
+
+/* 서브메뉴 활성화 */
+.kseta-header--expanded {
+  background-color: #fff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* 드롭다운 메뉴 */
+.kseta-header__submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 10px 0;
+  min-width: 160px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.kseta-header__submenu--show {
+  display: block;
+  opacity: 1;
+}
+
+.kseta-header__submenu-item {
+  padding: 8px 15px;
+}
+
+.kseta-header__submenu-item a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  font-size: 14px;
+}
+
+.kseta-header__submenu-item a:hover {
+  background: #f0f0f0;
+}
+
+/* 메뉴 호버 시 서브메뉴 표시 */
+.kseta-header__menu-item:hover .kseta-header__submenu {
+  display: block;
+}
+
+/* 모바일 네비게이션 */
+.kseta-header__menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* 반응형 처리 */
+@media (max-width: 768px) {
+  .kseta-header__menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .kseta-header__menu-toggle {
+    display: block;
+  }
+
+  .kseta-header__menu--open {
+    display: flex;
+  }
+}
+
+</style>
+<body>
+
+    <!-- 최상단 로그인/회원가입 -->
+    <div class="kseta-header__top-bar">
+        <a href="#">회원가입</a>
+        <a href="#">로그인</a>
+    </div>
+
+    <!-- 메인 네비게이션 -->
+    <header class="kseta-header">
+        <div class="container kseta-header__container">
+            <!-- 로고 -->
+            <a href="/" class="kseta-header__logo">
+                <img src="/assets/img/kseta_rogo.png" alt="Kseta 로고">
+            </a>
+
+            <!-- 모바일 메뉴 버튼 -->
+            <div class="kseta-header__menu-toggle">☰</div>
+
+            <!-- 네비게이션 메뉴 -->
+            <nav class="kseta-header__nav">
+                <ul class="kseta-header__menu d-flex">
+                    <li class="kseta-header__menu-item">
+                        <a href="m1_1_planning.html" class="kseta-header__menu-link">협회소개</a>
+                        <ul class="kseta-header__submenu">
+                            <li class="kseta-header__submenu-item"><a href="m1_1_planning.html">인사말</a></li>
+                            <li class="kseta-header__submenu-item"><a href="m1_1_planning.html">조직도</a></li>
+                            <li class="kseta-header__submenu-item"><a href="m1_1_planning.html">오시는 길</a></li>
+                        </ul>
+                    </li>
+                    <li class="kseta-header__menu-item">
+                        <a href="m2_1_vision.html" class="kseta-header__menu-link">융합교육</a>
+                        <ul class="kseta-header__submenu">
+                            <li class="kseta-header__submenu-item"><a href="m2_1_vision.html">사업목표</a></li>
+                            <li class="kseta-header__submenu-item"><a href="m2_2_benefit.html">추진사업</a></li>
+                        </ul>
+                    </li>
+                    <li class="kseta-header__menu-item">
+                        <a href="m3_1_sale01.html" class="kseta-header__menu-link">자격검정</a>
+                        <ul class="kseta-header__submenu">
+                            <li class="kseta-header__submenu-item"><a href="m3_1_sale01.html">빅데이터 전문가</a></li>
+                            <li class="kseta-header__submenu-item"><a href="m3_1_sale01.html">인공지능 마스터</a></li>
+                            <li class="kseta-header__submenu-item"><a href="m3_1_sale01.html">자격증 발급</a></li>
+                            <li class="kseta-header__submenu-item"><a href="m3_1_sale01.html">시험접수</a></li>
+                        </ul>
+                    </li>
+                    <li class="kseta-header__menu-item">
+                        <a href="m4_1_notice.html" class="kseta-header__menu-link">고객센터</a>
+                        <ul class="kseta-header__submenu">
+                            <li class="kseta-header__submenu-item"><a href="m4_1_notice.html">공지사항</a></li>
+                            <li class="kseta-header__submenu-item"><a href="m4_1_notice.html">1:1 문의</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+</body>
+
+</html>

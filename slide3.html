@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 배너 슬라이드</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600&display=swap');
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* 캐러셀 스타일 */
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+/* 슬라이드 컨테이너 */
+.carousel__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* 슬라이드 전체 */
+.carousel__slides {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* 개별 슬라이드 */
+.carousel__slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.carousel__content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* 네비게이션 버튼 */
+.carousel__prev,
+.carousel__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.carousel__prev { left: 20px; }
+.carousel__next { right: 20px; }
+
+.carousel__prev:hover,
+.carousel__next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* 점 네비게이션 */
+.carousel__dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.carousel__dot {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.carousel__dot.active {
+    background: #3498db;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .carousel {
+        height: 350px;
+    }
+}
+
+</style>
+<body>
+
+    <!-- 메인 배너 슬라이드 섹션 -->
+    <section class="carousel">
+        <div class="carousel__container">
+            <div class="carousel__slides">
+                <div class="carousel__slide active" style="background-image: url('banner1.png');">
+                    <div class="carousel__content">
+                        <h2>첫 번째 슬라이드</h2>
+                        <p>최고의 서비스를 제공합니다.</p>
+                    </div>
+                </div>
+                <div class="carousel__slide" style="background-image: url('banner2.png');">
+                    <div class="carousel__content">
+                        <h2>새로운 경험</h2>
+                        <p>최신 기술로 더 나은 미래를 만듭니다.</p>
+                    </div>
+                </div>
+                <div class="carousel__slide" style="background-image: url('banner3.png');">
+                    <div class="carousel__content">
+                        <h2>고객 만족</h2>
+                        <p>여러분의 의견을 존중합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 좌우 네비게이션 버튼 -->
+            <button class="carousel__prev">&#10094;</button>
+            <button class="carousel__next">&#10095;</button>
+
+            <!-- 점 네비게이션 -->
+            <div class="carousel__dots">
+                <span class="carousel__dot active"></span>
+                <span class="carousel__dot"></span>
+                <span class="carousel__dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js">
+        document.addEventListener("DOMContentLoaded", function () {
+                const slides = document.querySelectorAll(".carousel__slide");
+                const dots = document.querySelectorAll(".carousel__dot");
+                let currentIndex = 0;
+                const totalSlides = slides.length;
+
+                function showSlide(index) {
+                    const slideWidth = 100; // 슬라이드 너비 %
+                    const newTransformValue = `translateX(-${index * slideWidth}%)`;
+                    document.querySelector(".carousel__slides").style.transform = newTransformValue;
+
+                    dots.forEach(dot => dot.classList.remove("active"));
+                    dots[index].classList.add("active");
+                }
+
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    showSlide(currentIndex);
+                }
+
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    showSlide(currentIndex);
+                }
+
+                document.querySelector(".carousel__next").addEventListener("click", nextSlide);
+                document.querySelector(".carousel__prev").addEventListener("click", prevSlide);
+
+                dots.forEach((dot, index) => {
+                    dot.addEventListener("click", () => {
+                        currentIndex = index;
+                        showSlide(currentIndex);
+                    });
+                });
+
+                setInterval(nextSlide, 5000); // 5초마다 자동 슬라이드
+            });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 배너 슬라이드</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600&display=swap');
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* 메인 배너 스타일 */
+.main-banner {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+/* 슬라이드 컨테이너 */
+.main-banner__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* 개별 슬라이드 */
+.main-banner__slides {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.main-banner__slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.main-banner__content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* 네비게이션 버튼 */
+.main-banner__prev,
+.main-banner__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.main-banner__prev { left: 20px; }
+.main-banner__next { right: 20px; }
+
+.main-banner__prev:hover,
+.main-banner__next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* 점 네비게이션 */
+.main-banner__dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.main-banner__dot {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.main-banner__dot.active {
+    background: #3498db;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .main-banner {
+        height: 350px;
+    }
+}
+
+</style>
+<body>
+
+    <!-- 메인 배너 슬라이드 섹션 -->
+    <section class="main-banner">
+        <div class="main-banner__container">
+            <div class="main-banner__slides">
+                <div class="main-banner__slide active" style="background-image: url('banner1.jpg');">
+                    <div class="main-banner__content">
+                        <h2>첫 번째 슬라이드</h2>
+                        <p>이곳에 설명을 입력하세요.</p>
+                    </div>
+                </div>
+                <div class="main-banner__slide" style="background-image: url('banner2.jpg');">
+                    <div class="main-banner__content">
+                        <h2>두 번째 슬라이드</h2>
+                        <p>이곳에 설명을 입력하세요.</p>
+                    </div>
+                </div>
+                <div class="main-banner__slide" style="background-image: url('banner3.jpg');">
+                    <div class="main-banner__content">
+                        <h2>세 번째 슬라이드</h2>
+                        <p>이곳에 설명을 입력하세요.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 좌우 네비게이션 버튼 -->
+            <button class="main-banner__prev">&#10094;</button>
+            <button class="main-banner__next">&#10095;</button>
+
+            <!-- 점 네비게이션 -->
+            <div class="main-banner__dots">
+                <span class="main-banner__dot active"></span>
+                <span class="main-banner__dot"></span>
+                <span class="main-banner__dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js">
+        document.addEventListener("DOMContentLoaded", function () {
+                const slides = document.querySelectorAll(".main-banner__slide");
+                const dots = document.querySelectorAll(".main-banner__dot");
+                let currentIndex = 0;
+                const totalSlides = slides.length;
+
+                function showSlide(index) {
+                    const slideWidth = 100; // 슬라이드 너비 %
+                    const newTransformValue = `translateX(-${index * slideWidth}%)`;
+                    document.querySelector(".main-banner__slides").style.transform = newTransformValue;
+
+                    dots.forEach(dot => dot.classList.remove("active"));
+                    dots[index].classList.add("active");
+                }
+
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    showSlide(currentIndex);
+                }
+
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    showSlide(currentIndex);
+                }
+
+                document.querySelector(".main-banner__next").addEventListener("click", nextSlide);
+                document.querySelector(".main-banner__prev").addEventListener("click", prevSlide);
+
+                dots.forEach((dot, index) => {
+                    dot.addEventListener("click", () => {
+                        currentIndex = index;
+                        showSlide(currentIndex);
+                    });
+                });
+
+                setInterval(nextSlide, 5000); // 5초마다 자동 슬라이드
+            });
+
+    </script>
+
+</body>
+
+</html>

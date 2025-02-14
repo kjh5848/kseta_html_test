@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>풀스크린 메인 배너 슬라이드</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600&display=swap');
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* 슬라이드 섹션 */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 슬라이드 컨테이너 */
+.hero-slider__slides {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* 개별 슬라이드 */
+.hero-slider__slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* 활성화된 슬라이드 */
+.hero-slider__slide--active {
+    opacity: 1;
+}
+
+/* 슬라이드 텍스트 스타일 */
+.hero-slider__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+
+.hero-slider__content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.hero-slider__content p {
+    font-size: 1.2rem;
+}
+
+/* 자동 전환 효과 */
+@keyframes slide {
+    0% { opacity: 0; }
+    33% { opacity: 1; }
+    66% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* 자동 슬라이드 (CSS만으로 구현) */
+.hero-slider__slide:nth-child(1) {
+    animation: slide 9s infinite 0s;
+}
+.hero-slider__slide:nth-child(2) {
+    animation: slide 9s infinite 3s;
+}
+.hero-slider__slide:nth-child(3) {
+    animation: slide 9s infinite 6s;
+}
+</style>
+<body>
+
+    <!-- 메인 배너 슬라이드 섹션 -->
+    <section class="hero-slider">
+        <div class="hero-slider__slides">
+            <div class="hero-slider__slide hero-slider__slide--active" style="background-image: url('banner1.png');">
+                <div class="hero-slider__content">
+                    <h2>환영합니다!</h2>
+                    <p>최고의 서비스를 제공합니다.</p>
+                </div>
+            </div>
+            <div class="hero-slider__slide" style="background-image: url('banner2.png');">
+                <div class="hero-slider__content">
+                    <h2>새로운 경험</h2>
+                    <p>최신 기술로 더 나은 미래를 만듭니다.</p>
+                </div>
+            </div>
+            <div class="hero-slider__slide" style="background-image: url('banner3.png');">
+                <div class="hero-slider__content">
+                    <h2>고객 만족</h2>
+                    <p>여러분의 의견을 존중합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
