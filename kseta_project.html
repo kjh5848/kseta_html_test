@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>/* 프로젝트 섹션 스타일 */
+.kseta-project {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('project.jpg') center/cover no-repeat fixed;
+    color: white;
+}
+
+/* 메인 타이틀 */
+.kseta-project__main-title {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 2.5rem;
+    color: white;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.kseta-project__main-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #ffffff);
+}
+
+/* 섹션 제목 */
+.kseta-project__title {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 1.8rem;
+    color: white;
+    font-weight: 700;
+    position: relative;
+}
+
+.kseta-project__title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background-color: #3498db;
+}
+
+/* 프로젝트 컨테이너 */
+.kseta-project__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 개별 섹션 */
+.kseta-project__section {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    perspective: 1000px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease;
+}
+
+.kseta-project__section::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    right: 20px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    filter: blur(10px);
+    z-index: -1;
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+/* 애니메이션 */
+.kseta-project__section--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.kseta-project__section--visible::before {
+    opacity: 1;
+}
+
+/* 프로젝트 번호 */
+.kseta-project__number {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #3498db;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateX(-50px) rotateX(-90deg);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.kseta-project__section--visible .kseta-project__number {
+    opacity: 1;
+    transform: translateX(0) rotateX(0deg);
+}
+
+/* 프로젝트 제목 */
+.kseta-project__title-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateZ(20px);
+    word-wrap: break-word;
+    word-break: keep-all;
+}
+
+/* 프로젝트 설명 */
+.kseta-project__description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    transform: translateZ(10px);
+    word-wrap: break-word;
+    word-break: keep-all;
+}
+
+/* 호버 효과 */
+.kseta-project__section:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.47);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .kseta-project__main-title {
+        font-size: 1.8rem;
+        padding: 0 20px 20px;
+    }
+    
+    .kseta-project__title {
+        font-size: 1.5rem;
+    }
+    
+    .kseta-project__section {
+        padding: 30px;
+    }
+    
+    .kseta-project__number {
+        font-size: 3rem;
+    }
+    
+    .kseta-project__title-text {
+        font-size: 1.3rem;
+    }
+}
+
+/* 애니메이션 */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+</style>
+<body><section class="kseta-project">
+    <h1 class="kseta-project__main-title">IT융합인재(STEAM) 교육 프로그램 산학협력 연구개발 사업</h1>
+    <h2 class="kseta-project__title">사업 목적</h2>
+    <div class="kseta-project__container">
+        <div class="kseta-project__section kseta-project__section--visible" style="--delay: 1">
+            <div class="kseta-project__number">01</div>
+            <div class="kseta-project__content">
+                <h3 class="kseta-project__title-text">급격한 기술변화 및 교육 인프라 디지털 전환에 대응</h3>
+                <p class="kseta-project__description">산업현장 수요 맞춤형 IT융합 인재육성을 추구</p>
+            </div>
+        </div>
+
+        <div class="kseta-project__section kseta-project__section--visible" style="--delay: 2">
+            <div class="kseta-project__number">02</div>
+            <div class="kseta-project__content">
+                <h3 class="kseta-project__title-text">IoT, AI, Big Data 등의 신기술 융합인재(STEAM) 양성</h3>
+                <p class="kseta-project__description">NCS 기반 산학협력 교육 프로그램/교재 연구개발</p>
+            </div>
+        </div>
+
+        <div class="kseta-project__section kseta-project__section--visible" style="--delay: 3">
+            <div class="kseta-project__number">03</div>
+            <div class="kseta-project__content">
+                <h3 class="kseta-project__title-text">온/오프라인 융합학습 환경에 보급/전파</h3>
+                <p class="kseta-project__description">소프트웨어 산업의 발전과 신기술 전파 목적</p>
+            </div>
+        </div>
+    </div>
+</section></body>
+</html>

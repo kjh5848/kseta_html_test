@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>자격증 신청</title>
+    <style>
+
+        .kseta-qualification {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            gap: 2rem;
+        }
+
+        /* 사이드바 */
+        .kseta-qualification__sidebar {
+            width: 280px;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .kseta-qualification__sidebar-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .kseta-qualification__nav {
+            list-style: none;
+        }
+
+        .kseta-qualification__nav-item a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #495057;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .kseta-qualification__nav-item a:hover {
+            background-color: #f1f3f5;
+            color: #0066cc;
+        }
+
+        .kseta-qualification__nav-item a--active {
+            background-color: #e7f1ff;
+            color: #0066cc;
+            font-weight: 500;
+        }
+
+        /* 메인 콘텐츠 */
+        .kseta-qualification__main {
+            flex: 1;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .kseta-qualification__title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #0066cc;
+        }
+
+        .kseta-qualification__content-box {
+            background: #f8f9fa;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .kseta-qualification__description {
+            line-height: 1.7;
+            color: #495057;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 폼 스타일 */
+.kseta-certificate__form-group {
+    margin-bottom: 1.5rem;
+}
+
+.kseta-certificate__form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #495057;
+}
+
+.kseta-certificate__form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.kseta-certificate__form-control:focus {
+    outline: none;
+    border-color: #0066cc;
+}
+
+.kseta-certificate__form-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+}
+
+/* 이미지 업로드 영역 */
+.kseta-certificate__image-upload {
+    border: 2px dashed #dee2e6;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.kseta-certificate__image-upload--dragover {
+    border-color: #0066cc;
+    background-color: #e7f1ff;
+}
+
+.kseta-certificate__image-preview {
+    max-width: 300px;
+    margin: 1rem auto;
+    position: relative;
+}
+
+.kseta-certificate__image-preview-img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+.kseta-certificate__remove-image {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 버튼 스타일 */
+.kseta-certificate__btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.kseta-certificate__btn--primary {
+    background-color: #0066cc;
+    color: white;
+}
+
+.kseta-certificate__btn--primary:hover {
+    background-color: #0056b3;
+}
+
+.kseta-certificate__btn--secondary {
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+.kseta-certificate__btn--secondary:hover {
+    background-color: #e9ecef;
+}
+
+.kseta-certificate__error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+.kseta-certificate__upload-btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.kseta-certificate__upload-btn:hover {
+    background-color: #e9ecef;
+}
+
+@media screen and (max-width: 768px) {
+    .kseta-qualification {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .kseta-qualification__sidebar {
+        width: 100%;
+        position: relative;
+        top: 0;
+        padding: 1rem;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .kseta-qualification__nav {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0;
+    }
+
+    .kseta-qualification__nav-item {
+        flex: 1;
+    }
+
+    .kseta-qualification__nav-item a {
+        text-align: center;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .kseta-qualification__main {
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .kseta-qualification__nav {
+        flex-direction: column;
+    }
+
+    .kseta-qualification__nav-item a {
+        width: 100%;
+        text-align: left;
+    }
+}
+    </style>
+</head>
+
+<body>
+<div class="kseta-qualification">
+    <div class="kseta-qualification__sidebar">
+        <h2 class="kseta-qualification__sidebar-title">자격증 신청</h2>
+        <ul class="kseta-qualification__nav">
+            <li class="kseta-qualification__nav-item">
+                <a href="#step1Content" class="active">자격증 선택</a>
+            </li>
+            <li class="kseta-qualification__nav-item">
+                <a href="#info" >배송 정보</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="kseta-qualification__main">
+        <h1 class="kseta-qualification__title">자격증 신청</h1>
+
+        <form id="certificationForm">
+            <div id="step1Content" class="kseta-qualification__content-box">
+                <h2>자격증 정보</h2>
+                <div style="border: 1px solid #0066cc; margin-bottom: 20px; margin-top: -10px;"></div>
+                <div class="form-group">
+                    <label class="kseta-certificate__form-label">자격증 종류</label>
+                    <select class="kseta-certificate__form-select" name="certificationType" required>
+                        <option value="">선택해주세요</option>
+                        <option value="bigdata">빅데이터 전문가</option>
+                        <option value="ai">인공지능 데이터 마스터</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="kseta-certificate__form-label">등급</label>
+                    <select class="kseta-certificate__form-select" name="grade" required disabled>
+                        <option value="">선택해주세요</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="kseta-certificate__form-label">자격증 사진</label>
+                    <div class="kseta-certificate__image-upload" id="imageUpload">
+                        <div id="uploadPrompt">
+                            <p>이미지를 드래그하거나 업로드 버튼을 클릭하세요</p>
+                            <p class="text-sm text-gray-500">PNG, JPG (600x800 픽셀 이상)</p>
+                            <button type="button" class="kseta-certificate__upload-btn">
+                                이미지 업로드
+                            </button>
+                        </div>
+                        <div id="imagePreview" class="kseta-certificate__image-preview" style="display: none;">
+                            <img src="" alt="Preview" id="previewImage" class="kseta-certificate__image-preview-img">
+                            <button type="button" class="kseta-certificate__remove-image">×</button>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/jpg"
+                            style="display: none;">
+                    </div>
+                    <div id="imageError" class="kseta-certificate__error-message"></div>
+                </div>
+            </div>
+
+            <div class="kseta-qualification__content-box">
+                <h2 id="info">배송정보</h2>
+                <div style="border: 1px solid #0066cc; margin-bottom: 20px; margin-top: -10px;"></div>
+                <div class="form-group">
+                    <label class="kseta-certificate__form-label">받는 사람</label>
+                    <input type="text" class="kseta-certificate__form-control" name="recipient" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="kseta-certificate__form-label">우편번호</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" class="kseta-certificate__form-control" name="zipCode" required readonly
+                            style="flex: 1;">
+                        <button type="button" class="kseta-certificate__btn kseta-certificate__btn--secondary"
+                            id="search-address">주소 검색</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="kseta-certificate__form-label">주소</label>
+                    <input type="text" class="kseta-certificate__form-control" name="address" required readonly>
+                </div>
+
+                <div class="form-group">
+                    <label class="kseta-certificate__form-label">상세주소</label>
+                    <input type="text" class="kseta-certificate__form-control" name="addressDetail" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label class="kseta-certificate__form-label">연락처</label>
+                    <input type="tel" class="kseta-certificate__form-control" name="phone" required
+                        placeholder="010-0000-0000">
+                </div>
+
+                <div style="display: flex; justify-content: center; ">
+                    <button type="submit" class="kseta-certificate__btn kseta-certificate__btn--primary">신청하기</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <script>
+        $(document).ready(function () {
+                // 현재 진행 단계 및 업로드된 이미지 저장 변수
+                let currentStep = 1;
+                let uploadedImage = null;
+
+                // 자격증 정보 객체
+                const certifications = {
+                    'bigdata': { name: '빅데이터 전문가', grades: ['1급', '2급', '3급'] },
+                    'ai': { name: '인공지능 데이터 마스터', grades: ['1급', '2급'] }
+                };
+
+                // 자격증 종류 선택 시 등급 업데이트
+                $('.kseta-certificate__form-select[name="certificationType"]').on('change', function () {
+                    let selectedType = $(this).val();
+                    let $gradeSelect = $('.kseta-certificate__form-select[name="grade"]');
+
+                    $gradeSelect.empty().append('<option value="">선택해주세요</option>').prop('disabled', !selectedType);
+
+                    if (selectedType) {
+                        certifications[selectedType].grades.forEach(function (grade) {
+                            $gradeSelect.append(`<option value="${grade}">${grade}</option>`);
+                        });
+                    }
+                });
+
+                // 이미지 업로드 버튼 클릭
+                $('.kseta-certificate__upload-btn').on('click', function () {
+                    $('#fileInput').click();
+                });
+
+                // 이미지 업로드
+                $('#fileInput').on('change', function (e) {
+                    const file = e.target.files[0];
+                    if (file) handleFileUpload(file);
+                });
+
+                // 드래그 앤 드롭 영역
+                $('.kseta-certificate__image-upload')
+                    .on('dragover', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        $(this).addClass('dragover');
+                    })
+                    .on('dragleave', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        $(this).removeClass('dragover');
+                    })
+                    .on('drop', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        $(this).removeClass('dragover');
+
+                        const file = e.originalEvent.dataTransfer.files[0];
+                        if (file) handleFileUpload(file);
+                    });
+
+                // 파일 업로드 처리
+                function handleFileUpload(file) {
+                    if (!file.type.match('image/(jpeg|jpg|png)')) {
+                        showError('PNG 또는 JPG 형식의 이미지만 업로드 가능합니다.');
+                        return;
+                    }
+
+                    const img = new Image();
+                    img.src = URL.createObjectURL(file);
+
+                    img.onload = function () {
+                        uploadedImage = file;
+                        showPreview(URL.createObjectURL(file));
+                        $('#imageError').text('');
+
+                        URL.revokeObjectURL(img.src);
+
+                        if (img.width < 600 || img.height < 600) {
+                            showError('이미지 크기가 600x600 픽셀보다 작습니다.');
+                            return;
+                        }
+                    };
+
+                    img.onerror = function () {
+                        URL.revokeObjectURL(img.src);
+                        showError('이미지를 불러오는 중 오류가 발생했습니다.');
+                    };
+                }
+
+                function showPreview(src) {
+                    $('#previewImage').attr('src', src);
+                    $('#uploadPrompt').hide();
+                    $('#imagePreview').show();
+                }
+
+                function showError(message) {
+                    $('.kseta-certificate__error-message').text(message);
+                    removeImage();
+                }
+
+                function removeImage() {
+                    uploadedImage = null;
+                    $('#fileInput').val('');
+                    $('#uploadPrompt').show();
+                    $('#imagePreview').hide();
+                }
+
+                $('.kseta-certificate__remove-image').on('click', function (e) {
+                    e.stopPropagation();
+                    removeImage();
+                });
+
+                // 폼 제출
+                $('#certificationForm').on('submit', function (e) {
+                    e.preventDefault();
+
+                    let certificationType = $('.kseta-certificate__form-select[name="certificationType"]').val();
+                    let grade = $('.kseta-certificate__form-select[name="grade"]').val();
+
+                    if (!certificationType) {
+                        alert('자격증 종류를 선택해주세요.');
+                        return false;
+                    }
+                    if (!grade) {
+                        alert('등급을 선택해주세요.');
+                        return false;
+                    }
+                    if (!uploadedImage) {
+                        alert('자격증 사진을 업로드해주세요.');
+                        return false;
+                    }
+
+                    const formData = new FormData(this);
+                    formData.append('image', uploadedImage);
+
+                    $.ajax({
+                        url: '/api/certification/apply',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            alert('자격증 신청이 완료되었습니다.');
+                            location.href = '/certification/complete';
+                        },
+                        error: function () {
+                            alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+                        }
+                    });
+                });
+
+                // 주소 검색
+                $('#search-address').on('click', function () {
+                    new daum.Postcode({
+                        oncomplete: function (data) {
+                            $('input[name="zipCode"]').val(data.zonecode);
+                            $('input[name="address"]').val(data.address);
+                            $('input[name="addressDetail"]').focus();
+                        }
+                    }).open();
+                });
+            });;
+    </script>
+
+    </body>
+
+    </html>

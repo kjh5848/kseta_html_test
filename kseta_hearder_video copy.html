@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Background with Dynamic Header</title>
+  <link rel="stylesheet" href="css/kseta_video_02.css">
+  <style></style>
+</head>
+
+<body>
+  <header class="kseta-header">
+    <div class="kseta-header__container">
+      <div class="kseta-header__logo">Logo</div>
+      <ul class="kseta-header__nav">
+        <li>메뉴1</li>
+        <li>메뉴2</li>
+        <li>메뉴3</li>
+      </ul>
+    </div>
+  </header>
+  
+  <div class="kseta-video">
+    <div class="kseta-video__media">
+      <video autoplay muted loop playsinline>
+        <source src="video_banner.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="kseta-video__overlay"></div>
+  </div>
+  
+  <div class="kseta-content">
+    <h1 class="kseta-content__title">Welcome to Our Site</h1>
+    <div class="kseta-content__scroll">
+      <div class="kseta-content__item">Scroll Content 1</div>
+      <!-- 추가 아이템들... -->
+    </div>
+  </div>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // 더미 콘텐츠 생성
+      const $scrollContent = $('.kseta-content__scroll');
+      for (let i = 0; i < 20; i++) {
+        $('<div>', {
+          class: 'kseta-content__item',
+          text: `Scroll Content ${i + 1}`
+        }).appendTo($scrollContent);
+      }
+
+      // 헤더 동작 제어
+      let lastScrollY = 0;
+      let isScrolling = false;
+      let scrollTimer = null;
+      const $header = $('.kseta-header');
+      const $title = $('.kseta-content__title');
+
+      $(window).on('scroll', function () {
+        const currentScrollY = $(window).scrollTop();
+
+        // 스크롤 20px 이상시 배경색 변경
+        if (currentScrollY > 20) {
+          $header.addClass('kseta-header--white');
+        } else {
+          $header.removeClass('kseta-header--white');
+        }
+
+        // 메인 타이틀 페이드 아웃
+        if (currentScrollY > $(window).height() * 0.3) {
+          $title.addClass('kseta-content__title--hidden');
+        } else {
+          $title.removeClass('kseta-content__title--hidden');
+        }
+
+        // 스크롤 방향 감지 및 헤더 숨김/표시
+        if (currentScrollY > lastScrollY && currentScrollY > 64) {
+          if (!isScrolling) {
+            $header.addClass('kseta-header--hidden');
+          }
+        } else {
+          $header.removeClass('kseta-header--hidden');
+        }
+
+        lastScrollY = currentScrollY;
+        isScrolling = true;
+
+        // 스크롤 멈춤 감지
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function () {
+          isScrolling = false;
+          $header.removeClass('kseta-header--hidden');
+        }, 150);
+      });
+    });</script>
+</body>
+
+</html>

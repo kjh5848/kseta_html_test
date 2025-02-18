@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>빅데이터 전문가 자격증 개요</title>
+    <style>
+        /* 기본 스타일 */
+        .kseta-qualification {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            gap: 2rem;
+        }
+
+        /* 사이드바 */
+        .kseta-qualification__sidebar {
+            width: 280px;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .kseta-qualification__sidebar-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .kseta-qualification__nav {
+            list-style: none;
+        }
+
+        .kseta-qualification__nav-item a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #495057;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .kseta-qualification__nav-item a:hover {
+            background-color: #f1f3f5;
+            color: #0066cc;
+        }
+
+        .kseta-qualification__nav-item a--active {
+            background-color: #e7f1ff;
+            color: #0066cc;
+            font-weight: 500;
+        }
+
+        /* 메인 콘텐츠 */
+        .kseta-qualification__main {
+            flex: 1;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .kseta-qualification__title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #0066cc;
+        }
+
+        .kseta-qualification__content-box {
+            background: #f5f5f5;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+         .kseta-qualification__content-box h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #0066cc;
+         }
+
+        .kseta-qualification__description {
+            line-height: 1.7;
+            color: #495057;
+            margin-bottom: 1.5rem;
+        }
+
+        .kseta-qualification__highlight {
+            font-weight: 500;
+            color: #0066cc;
+        }
+
+        /* 등급 정보 */
+        .kseta-qualification__grades {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .kseta-qualification__grade-card {
+            padding: 1.5rem;
+        }
+
+        .kseta-qualification__grade-card-title {
+            font-size: 1.1rem;
+            color: #0066cc;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .kseta-qualification__grade-card-text {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* 등급 세부 정보 */
+        .kseta-qualification__grade-detail {
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .kseta-qualification__grade-title {
+            color: #0066cc;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .kseta-qualification__role,
+        .kseta-qualification__capability {
+            margin-bottom: 1.5rem;
+        }
+
+        .kseta-qualification__role-title,
+        .kseta-qualification__capability-title {
+            color: #495057;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .kseta-qualification__list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .kseta-qualification__list-item {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+            color: #495057;
+        }
+
+        .kseta-qualification__list-item::before {
+            content: "•";
+            color: #0066cc;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* 시험 관련 스타일 */
+        .kseta-qualification__exam-box h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #0066cc;
+        }
+
+        .kseta-qualification__exam-intro {
+            font-size: 1.1rem;
+            color: #495057;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .kseta-qualification__exam-section-title {
+            font-size: 1.25rem;
+            color: #0066cc;
+            margin-bottom: 1.5rem;
+        }
+
+        .kseta-qualification__exam-grades {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .kseta-qualification__exam-grade-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .kseta-qualification__grade-header {
+            background: #e7f1ff;
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .kseta-qualification__grade-badge {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0066cc;
+        }
+
+        .kseta-qualification__exam-subjects {
+            list-style: none;
+            padding: 1.5rem;
+            margin: 0;
+        }
+
+        .kseta-qualification__exam-subjects-item {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #495057;
+            line-height: 1.5;
+        }
+
+        .kseta-qualification__exam-subjects-item::before {
+            content: "•";
+            color: #0066cc;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+       /* 반응형 디자인 */
+@media (max-width: 768px) {
+    .kseta-qualification {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .kseta-qualification__sidebar {
+        width: 100%;
+        position: relative;
+        padding: 1rem;
+        top: 0;
+    }
+
+    .kseta-qualification__nav {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0;
+    }
+
+    .kseta-qualification__nav-item {
+        flex: 1;
+    }
+
+    .kseta-qualification__nav-item a {
+        text-align: center;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .kseta-qualification__main {
+        padding: 1.5rem;
+    }
+
+    .kseta-qualification__title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .kseta-qualification__content-box {
+        padding: 1rem;
+    }
+
+    .kseta-qualification__content-box h2 {
+        font-size: 1.2rem;
+    }
+
+    .kseta-qualification__grades {
+        grid-template-columns: 1fr;
+    }
+
+    .kseta-qualification__exam-grades {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .kseta-qualification {
+        padding: 0.5rem;
+    }
+
+    .kseta-qualification__nav {
+        flex-direction: column;
+    }
+
+    .kseta-qualification__nav-item a {
+        width: 100%;
+        text-align: left;
+    }
+
+    .kseta-qualification__main {
+        padding: 1rem;
+    }
+
+    .kseta-qualification__content-box {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .kseta-qualification__title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    /* 주소 검색 버튼 영역 */
+    div[style*="display: flex; gap: 0.5rem;"] {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    div[style*="display: flex; gap: 0.5rem;"] input[name="zipCode"] {
+        width: 100%;
+    }
+
+    div[style*="display: flex; gap: 0.5rem;"] button {
+        width: 100%;
+    }
+}
+
+
+    </style>
+</head>
+
+<body><div class="kseta-qualification">
+
+
+
+
+    <aside class="kseta-qualification__sidebar">
+        <h2 class="kseta-qualification__sidebar-title">목차</h2>
+        <ul class="kseta-qualification__nav">
+            <li class="kseta-qualification__nav-item"><a href="#overview_ai" class="active">자격증 개요</a></li>
+            <li class="kseta-qualification__nav-item"><a href="#duties_ai">등급별 직무 및 역량</a></li>
+            <li class="kseta-qualification__nav-item"><a href="#exam_ai">자격증 취득을 위한 검정 기준</a></li>
+            <li class="kseta-qualification__nav-item"><a href="#qualification_ai">응시 자격</a></li>
+        </ul>
+    </aside>
+
+    <section id="nav-item" class="kseta-qualification__main">
+        <!-- 인공지능 데이터 마스터 자격증 개요 -->
+        <article>
+            <h1 class="kseta-qualification__title">인공지능 데이터 마스터 자격증 개요</h1>
+
+            <div class="kseta-qualification__content-box" id="overview_ai">
+                <h2>자격증 소개</h2>
+                <p class="kseta-qualification__description">
+                    <span class="kseta-qualification__highlight">"인공지능 데이터 마스터"</span> 자격증은 AI 학습용 데이터 구축 및 품질 관리를 수행할 수
+                    있는
+                    전문가를
+                    양성하는 것을 목표로 하는 전문 자격증입니다.
+                </p>
+            </div>
+
+            <div class="kseta-qualification__content-box" id="organization">
+                <h2>주관 기관</h2>
+                <p class="kseta-qualification__description">
+                    본 자격증은 <span class="kseta-qualification__highlight">사단법인 한국융합인재교육협회</span>에서 주관하는 민간자격으로, AI 데이터 구축
+                    및 품질
+                    관리
+                    분야에서 전문성과 신뢰성을 갖춘 자격 제도입니다.
+                </p>
+            </div>
+
+            <div class="kseta-qualification__content-box" id="purpose">
+                <h2>자격증 목적</h2>
+                <p class="kseta-qualification__description">
+                    AI 학습 데이터의 품질 확보 및 데이터 구축 과정을 표준화하여, AI 서비스의 신뢰성을 향상시키고, 고품질의 데이터 라벨링 전문가를 양성하는 것을 목표로 합니다.
+                </p>
+            </div>
+
+            <div class="kseta-qualification__content-box" id="grades">
+                <h2>등급 구분</h2>
+                <div class="kseta-qualification__grades">
+                    <div class="kseta-qualification__grade-card">
+                        <h3 class="kseta-qualification__grade-card-title">1급</h3>
+                        <p class="kseta-qualification__grade-card-text">AI 데이터 품질 관리 전문가로, AI 학습용 데이터의 품질 검수 및 고급 데이터
+                            라벨링
+                            수행이
+                            가능한 최고급 등급</p>
+                    </div>
+                    <div class="kseta-qualification__grade-card">
+                        <h3 class="kseta-qualification__grade-card-title">2급</h3>
+                        <p class="kseta-qualification__grade-card-text">AI 데이터 라벨링 전문가로, AI 학습을 위한 데이터 수집 및 초·중급 라벨링 수행이
+                            가능한
+                            중급
+                            등급</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- 인공지능 데이터 마스터 자격증 개요 -->
+
+        <!-- 등급별 직무 설명 및 요구 역량 -->
+        <article id="duties_ai">
+            <h2 class="kseta-qualification__title">등급별 직무 설명 및 요구 역량</h2>
+
+            <!-- 1급 -->
+            <div class="kseta-qualification__grade-detail kseta-qualification__content-box">
+                <h3 class="kseta-qualification__grade-title">1급: AI 데이터 품질 관리 전문가</h3>
+                <div class="kseta-qualification__role">
+                    <h4 class="kseta-qualification__role-title">직무 역할</h4>
+                    <ul class="kseta-qualification__list">
+                        <li class="kseta-qualification__list-item">AI 학습용 데이터 품질 검수 및 고급 데이터 라벨링 수행</li>
+                        <li class="kseta-qualification__list-item">AI 모델 성능 평가를 위한 품질 관리 지표 설계 및 적용</li>
+                        <li class="kseta-qualification__list-item">데이터 품질 관리 계획 수립 및 개선 전략 운영</li>
+                    </ul>
+                </div>
+                <div class="kseta-qualification__capability">
+                    <h4 class="kseta-qualification__capability-title">필요한 역량</h4>
+                    <ul class="kseta-qualification__list">
+                        <li class="kseta-qualification__list-item">고급 데이터 라벨링 기법에 대한 이해</li>
+                        <li class="kseta-qualification__list-item">AI 학습 데이터 품질 관리 및 검수 능력</li>
+                        <li class="kseta-qualification__list-item">데이터 품질 평가 및 개선을 위한 분석 기법</li>
+                        <li class="kseta-qualification__list-item">AI 모델의 성능 지표 및 품질 관리 전략 이해</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2급 -->
+            <div class="kseta-qualification__grade-detail kseta-qualification__content-box">
+                <h3 class="kseta-qualification__grade-title">2급: AI 데이터 라벨링 전문가</h3>
+                <div class="kseta-qualification__role">
+                    <h4 class="kseta-qualification__role-title">직무 역할</h4>
+                    <ul class="kseta-qualification__list">
+                        <li class="kseta-qualification__list-item">AI 학습 데이터 구축 프로세스 이해 및 수행</li>
+                        <li class="kseta-qualification__list-item">기초~중급 수준의 이미지, 텍스트, 음성, 영상 데이터 라벨링</li>
+                        <li class="kseta-qualification__list-item">AI 학습 데이터 품질 검토 및 기본적인 검수 수행</li>
+                    </ul>
+                </div>
+                <div class="kseta-qualification__capability">
+                    <h4 class="kseta-qualification__capability-title">필요한 역량</h4>
+                    <ul class="kseta-qualification__list">
+                        <li class="kseta-qualification__list-item">AI 학습 데이터 구축에 대한 기본 이해</li>
+                        <li class="kseta-qualification__list-item">기본적인 데이터 라벨링 기술 및 도구 활용 능력</li>
+                        <li class="kseta-qualification__list-item">텍스트 및 영상 분류 라벨링 수행 능력</li>
+                        <li class="kseta-qualification__list-item">데이터 검수 및 품질 평가 기초 역량</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <!-- 등급별 직무 설명 및 요구 역량 -->
+
+
+        <!-- 자격증 취득을 위한 검정 기준 -->
+        <article id="exam_ai">
+            <h2 class="kseta-qualification__title">자격증 취득을 위한 검정 기준</h2>
+            <p class="kseta-qualification__exam-intro">자격증을 취득하려면 <strong>필기시험</strong>을 통과해야 합니다.</p>
+
+            <div class="kseta-qualification__exam-section kseta-qualification__content-box">
+                <h3 class="kseta-qualification__exam-section-title">필기시험 과목</h3>
+                <div class="kseta-qualification__exam-grades">
+                    <div class="kseta-qualification__exam-grade-card">
+                        <div class="kseta-qualification__grade-header">
+                            <span class="kseta-qualification__grade-badge">1급</span>
+                        </div>
+                        <ul class="kseta-qualification__exam-subjects">
+                            <li class="kseta-qualification__exam-subjects-item">인공지능의 기초</li>
+                            <li class="kseta-qualification__exam-subjects-item">머신러닝과 딥러닝</li>
+                            <li class="kseta-qualification__exam-subjects-item">인공지능과 빅데이터</li>
+                            <li class="kseta-qualification__exam-subjects-item">개인정보 보호</li>
+                            <li class="kseta-qualification__exam-subjects-item">고급 데이터 라벨링 이론 및 실습</li>
+                            <li class="kseta-qualification__exam-subjects-item">데이터 품질 관리의 이해</li>
+                        </ul>
+                    </div>
+                    <div class="kseta-qualification__exam-grade-card">
+                        <div class="kseta-qualification__grade-header">
+                            <span class="kseta-qualification__grade-badge">2급</span>
+                        </div>
+                        <ul class="kseta-qualification__exam-subjects">
+                            <li class="kseta-qualification__exam-subjects-item">인공지능의 기초</li>
+                            <li class="kseta-qualification__exam-subjects-item">머신러닝과 딥러닝</li>
+                            <li class="kseta-qualification__exam-subjects-item">인공지능과 빅데이터</li>
+                            <li class="kseta-qualification__exam-subjects-item">개인정보 보호</li>
+                            <li class="kseta-qualification__exam-subjects-item">초급 데이터 라벨링 이론 및 실습</li>
+                            <li class="kseta-qualification__exam-subjects-item">중급 데이터 라벨링 이론 및 실습</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kseta-qualification__exam-section kseta-qualification__content-box">
+                <h3 class="kseta-qualification__exam-section-title">합격 기준</h3>
+                <p class="kseta-qualification__exam-description">
+                    필기시험은 <strong>100점 만점 기준 60점 이상</strong>을 획득해야 합격으로 인정됩니다.
+                </p>
+            </div>
+
+
+        </article>
+        <!-- 자격증 취득을 위한 검정 기준 -->
+
+        <!-- 응시 자격 섹션 -->
+        <article id="qualification_ai">
+            <h2 class="kseta-qualification__title">응시 자격</h2>
+            <p class="kseta-qualification__exam-intro">인공지능 데이터 마스터 자격증은 등급별로 응시 자격이 다릅니다.</p>
+            <div class="kseta-qualification__exam-grades kseta-qualification__content-box">
+                <div class="kseta-qualification__exam-grade-card">
+                    <div class="kseta-qualification__grade-header">
+                        <span class="kseta-qualification__grade-badge">1급</span>
+                    </div>
+                    <ul class="kseta-qualification__exam-subjects">
+                        <li class="kseta-qualification__exam-subjects-item">4년제 대학 졸업 또는 4년 이상 수료한 자</li>
+                        <li class="kseta-qualification__exam-subjects-item">협회가 인정하는 교육기관의 교육과정을 이수한 자</li>
+                        <li class="kseta-qualification__exam-subjects-item">인공지능 데이터 마스터 2급 취득자</li>
+                    </ul>
+                </div>
+                <div class="kseta-qualification__exam-grade-card">
+                    <div class="kseta-qualification__grade-header">
+                        <span class="kseta-qualification__grade-badge">2급</span>
+                    </div>
+                    <ul class="kseta-qualification__exam-subjects">
+                        <li class="kseta-qualification__exam-subjects-item">협회가 인정하는 교육기관의 교육과정을 이수한 자</li>
+                        <li class="kseta-qualification__exam-subjects-item">연령 및 학력 제한 없음</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <!-- 응시 자격 섹션 -->
+    </section>
+
+</div>
+</body>
+<script>
+    $(document).ready(function () {
+        const $sidebarLinks = $('.kseta-qualification__nav-item a');
+        const $sections = $('.kseta-qualification__content-box');
+
+        $(window).scroll(function () {
+            let current = '';
+
+            $sections.each(function () {
+                const sectionTop = $(this).offset().top;
+                if ($(window).scrollTop() >= sectionTop - 60) {
+                    current = $(this).attr('id');
+                }
+            });
+
+            $sidebarLinks.removeClass('active');
+            $sidebarLinks.filter(`[href="#${current}"]`).addClass('active');
+        });
+    })
+</script>
+</html>

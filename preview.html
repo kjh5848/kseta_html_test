@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 미리보기</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .image-upload {
+            width: 300px;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .image-preview {
+            display: none;
+            position: relative;
+            width: 300px;
+            margin-top: 10px;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="image-upload" id="imageUpload">
+        <p>이미지를 클릭하거나 드래그하여 업로드</p>
+        <input type="file" id="fileInput" accept="image/png, image/jpeg" style="display: none;">
+    </div>
+
+    <div class="image-preview" id="imagePreview">
+        <img src="" alt="미리보기" id="previewImage">
+        <button type="button" class="remove-image" onclick="removeImage()">×</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // 파일 업로드 클릭 시
+            $("#imageUpload").click(function () {
+                $("#fileInput").click();
+            });
+
+            // 파일 선택 시 미리보기 업데이트
+            $("#fileInput").on("change", function (e) {
+                let file = e.target.files[0];
+                if (file) {
+                    handleFileUpload(file);
+                }
+            });
+
+            function handleFileUpload(file) {
+                // 파일 형식 검사
+                if (!file.type.match("image/(jpeg|jpg|png)")) {
+                    alert("JPG 또는 PNG 형식의 이미지를 업로드하세요.");
+                    return;
+                }
+
+                // Blob URL 생성
+                let objectURL = URL.createObjectURL(file);
+                $("#previewImage").attr("src", objectURL);
+                $("#imagePreview").show();
+                $("#imageUpload").hide();
+            }
+
+            // 이미지 제거 기능
+            window.removeImage = function () {
+                $("#fileInput").val(""); // 파일 입력 초기화
+                $("#imagePreview").hide();
+                $("#imageUpload").show();
+            };
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>국가기술자격</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 2rem;
+        }
+
+        .nav-item {
+            padding: 1rem 2rem;
+            border: 1px solid #dee2e6;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background-color: #e9ecef;
+        }
+
+        .nav-item.active {
+            background-color: white;
+            border-bottom: none;
+            position: relative;
+        }
+
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #0066cc;
+        }
+
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #0066cc;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .section-content {
+            line-height: 1.6;
+            color: #666;
+            margin-left: 1rem;
+        }
+
+        .red-text {
+            color: #dc3545;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <ul class="nav-tabs">
+                <li class="nav-item active" data-tab="intro">자격소개</li>
+                <li class="nav-item" data-tab="exam">시험주요내용</li>
+                <li class="nav-item" data-tab="score">출제문항 및 배점</li>
+                <li class="nav-item" data-tab="qualification">응시자격 및 합격기준</li>
+            </ul>
+        </nav>
+
+        <!-- 자격소개 탭 -->
+        <div id="intro" class="tab-content active">
+            <h1>국가기술자격</h1>
+
+            <div class="section">
+                <h2 class="section-title">관련 근거</h2>
+                <div class="section-content">
+                    <p class="red-text">국가기술자격법 및 동법 시행령</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">빅데이터분석기사 정의</h2>
+                <div class="section-content">
+                    <p>빅데이터 이해를 기반으로 빅데이터 분석 기획, 빅데이터 수집·저장·처리, 빅데이터 분석 및 시각화를 수행하는 실무자를 말한다.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">빅데이터분석기사의 필요성</h2>
+                <div class="section-content">
+                    <p>전 세계적으로 빅데이터가 미래성장동력으로 인식돼, 각국 정부에서는 관련 기업투자를 끌어내는 등 국가기업의 주요 전략분야로 부상하고 있다.</p>
+                    <p>국가와 기업의 경쟁력 확보를 위해 빅데이터 분석 전문가의 수요는 증가하고 있으나, 수요 대비 공급 부족으로 인력 확보에 어려움이 높은 실정이다.</p>
+                    <p>이에 정부차원에서 빅데이터 분석 전문가 양성과 함께 체계적으로 역량을 검증할 수 있는 국가기술자격 수요가 높은 편이다.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">빅데이터분석기사의 직무</h2>
+                <div class="section-content">
+                    <p>대용량의 데이터 집합으로부터 유용한 정보를 찾고 결과를 예측하기 위해 목적에 따라 분석기술과 방법론을 기반으로 정형/비정형 대용량 데이터를 구축, 탐색, 분석하고 시각화를
+                        수행하는 업무를 수행한다.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 시험주요내용 탭 -->
+        <div id="exam" class="tab-content">
+            <h1>시험주요내용</h1>
+            <div class="section">
+                <h2 class="section-title">시험과목</h2>
+                <div class="section-content">
+                    <p>1. 빅데이터 분석 기획</p>
+                    <p>2. 빅데이터 수집・저장・처리</p>
+                    <p>3. 빅데이터 분석</p>
+                    <p>4. 빅데이터 시각화</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 출제문항 및 배점 탭 -->
+        <div id="score" class="tab-content">
+            <h1>출제문항 및 배점</h1>
+            <div class="section">
+                <h2 class="section-title">배점 기준</h2>
+                <div class="section-content">
+                    <p>필기: 객관식 100문항 (과목당 25문항)</p>
+                    <p>실기: 작업형 시험</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 응시자격 및 합격기준 탭 -->
+        <div id="qualification" class="tab-content">
+            <h1>응시자격 및 합격기준</h1>
+            <div class="section">
+                <h2 class="section-title">합격기준</h2>
+                <div class="section-content">
+                    <p>필기: 과목당 40점 이상, 전과목 평균 60점 이상</p>
+                    <p>실기: 60점 이상</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.nav-item').click(function() {
+            // Remove active class from all tabs and contents
+            $('.nav-item').removeClass('active');
+            $('.tab-content').removeClass('active');
+
+            // Add active class to clicked tab
+            $(this).addClass('active');
+
+            // Show corresponding content
+            const contentId = $(this).data('tab');
+            $('#' + contentId).addClass('active');
+        });
+    });
+</script>
+</body>
+
+</html>

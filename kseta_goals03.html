@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>중점 추진 사업목표</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+.kseta-goals {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    background-color: #ffffff;
+}
+
+.kseta-goals__title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1a365d;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.kseta-goals__subtitle {
+    font-size: 1.2rem;
+    color: #4a5568;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.kseta-goals__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.kseta-goals__step {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.kseta-goals__step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.kseta-goals__image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.kseta-goals__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.kseta-goals__step:hover .kseta-goals__image {
+    transform: scale(1.05);
+}
+
+.kseta-goals__content-container {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.kseta-goals__number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.kseta-goals__text {
+    text-align: left;
+}
+
+.kseta-goals__text h3 {
+    font-size: 1.3rem;
+    color: #1a365d;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+}
+
+.kseta-goals__text p {
+    color: #4a5568;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.kseta-goals__footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #1a365d, #2d4a77);
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .kseta-goals__content {
+        grid-template-columns: 1fr;
+    }
+    
+    .kseta-goals__title {
+        font-size: 2rem;
+    }
+    
+    .kseta-goals__subtitle {
+        font-size: 1.1rem;
+    }
+}</style>
+<body>
+    <section class="kseta-goals">
+        <div class="kseta-goals__container">
+            <h2 class="kseta-goals__title">중점 추진 사업목표</h2>
+            <p class="kseta-goals__subtitle">Focused business goals</p>
+    
+            <div class="kseta-goals__content">
+                <div class="kseta-goals__step">
+                    <div class="kseta-goals__image-container">
+                        <img src="/api/placeholder/400/200" alt="교육프로그램 개발" class="kseta-goals__image">
+                    </div>
+                    <div class="kseta-goals__content-container">
+                        <div class="kseta-goals__number">01</div>
+                        <div class="kseta-goals__text">
+                            <h3>IT융합인재 전문 교육프로그램 연구개발 / 보급</h3>
+                            <p>(산업현장별 커스터마이징)</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="kseta-goals__step">
+                    <div class="kseta-goals__image-container">
+                        <img src="/api/placeholder/400/200" alt="전문교육" class="kseta-goals__image">
+                    </div>
+                    <div class="kseta-goals__content-container">
+                        <div class="kseta-goals__number">02</div>
+                        <div class="kseta-goals__text">
+                            <h3>IT융합인재 양성 전문교육</h3>
+                            <p>(현장수요 맞춤형 위탁교육)</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="kseta-goals__step">
+                    <div class="kseta-goals__image-container">
+                        <img src="/api/placeholder/400/200" alt="취업지원" class="kseta-goals__image">
+                    </div>
+                    <div class="kseta-goals__content-container">
+                        <div class="kseta-goals__number">03</div>
+                        <div class="kseta-goals__text">
+                            <h3>IT융합인재 취업지원 및 현장전문가 역량향상</h3>
+                            <p>(재직자 직무보수교육 / 자격검정)</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="kseta-goals__step">
+                    <div class="kseta-goals__image-container">
+                        <img src="/api/placeholder/400/200" alt="경력개발" class="kseta-goals__image">
+                    </div>
+                    <div class="kseta-goals__content-container">
+                        <div class="kseta-goals__number">04</div>
+                        <div class="kseta-goals__text">
+                            <h3>IT융합인재의 평생경력개발 지원</h3>
+                            <p>(현장전문가 ▶ IT융합 전문교육강사 ▶ 교육과정 개발자)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="kseta-goals__footer">
+                <p>IT융합 전문 교육개발 · 인재양성 · 경력개발의 선순환 생태계 구축</p>
+            </div>
+        </div>
+    </section>
+    
+    <div class="kseta-goals__content">
+    <div class="kseta-goals__step">
+        <div class="kseta-goals__image-container">
+            <img src="banner1.png" alt="IT융합인재 교육프로그램" class="kseta-goals__image">
+        </div>
+        <div class="kseta-goals__content-container">
+            <div class="kseta-goals__number">01</div>
+            <div class="kseta-goals__text">
+                <h3>IT융합인재 전문 교육프로그램 연구개발 / 보급</h3>
+                <p>(산업현장별 커스터마이징)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="kseta-goals__step">
+        <div class="kseta-goals__image-container">
+            <img src="banner2.png" alt="IT융합인재 양성" class="kseta-goals__image">
+        </div>
+        <div class="kseta-goals__content-container">
+            <div class="kseta-goals__number">02</div>
+            <div class="kseta-goals__text">
+                <h3>IT융합인재 양성 전문교육</h3>
+                <p>(현장수요 맞춤형 위탁교육)</p>
+            </div>
+        </div>
+    </div>
+    <!-- 나머지 카드들도 같은 구조로 반복 -->
+</div></body>
+
+</html>
