@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자격증 소개</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+        }
+
+        .bigdata-section {
+            display: flex;
+            height: 50vh;
+            position: relative;
+        }
+
+        .bigdata-content {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem;
+            color: #fff;
+            background-color: #23262d;
+        }
+
+        .ai-content {
+            width: 40% ;
+            height: 100%;
+            order: 2;
+            background-color: #ffffff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .bigdata-image {
+            width: 60%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .bigdata-image__big img {
+            position: absolute;
+            width: 55vw;
+            height: 35vh;
+            bottom: 40px;
+            right: 0;
+        }
+        
+        .ai-section {
+            display: flex;
+            height: 50vh;
+            position: relative;
+        }
+
+        .ai-image {
+            width: 60%;
+            height: 100%;
+            overflow: hidden;
+            order: 1;
+        }
+
+        .bigdata-image img,
+        .ai-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bigdata-title,
+        .ai-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .bigdata-description,
+        .ai-description {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .bigdata-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #464a53;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            width: 200px;
+        }
+
+        .bigdata-button:hover {
+            background-color: #5a5f6b;
+        }
+
+        .ai-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            width: 200px;
+        }
+
+        .ai-button:hover {
+            background-color: #5a6268;
+        }
+
+        @media (max-width: 768px) {
+            .bigdata-section,
+            .ai-section {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .bigdata-content,
+            .bigdata-image,
+            .ai-content,
+            .ai-image {
+                width: 100%;
+            }
+
+            .bigdata-content,
+            .ai-content {
+                padding: 2rem;
+            }
+
+            .bigdata-image,
+            .ai-image {
+                height: 300px;
+            }
+
+            .ai-content,
+            .ai-image {
+                order: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 빅데이터 자격증 섹션 -->
+    <section class="bigdata-section">
+        <div class="bigdata-content">
+            <h2 class="bigdata-title">빅데이터 자격증</h2>
+            <p class="bigdata-description">자격증 소개</p>
+            <button class="bigdata-button">바로가기</button>
+        </div>
+        <div class="bigdata-image__big">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
+                alt="빅데이터 자격증">
+        </div>
+    </section>
+
+    <!-- 인공지능 자격증 섹션 -->
+    <section class="ai-section">
+        <div class="ai-content">
+            <h2 class="ai-title">인공지능 자격증</h2>
+            <p class="ai-description">자격증 소개</p>
+            <button class="ai-button">바로가기</button>
+        </div>
+        <div class="ai-image">
+            <img src="https://images.unsplash.com/photo-1554260570-9140fd3b7614?q=80&w=2340&auto=format&fit=crop"
+                alt="인공지능 자격증">
+        </div>
+    </section>
+</body>
+
+</html>

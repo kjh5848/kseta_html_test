@@ -1,9 +1,9 @@
+
 .kseta-expect {
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 100px 20px;
     background-color: #f0f4f8;
 }
+
 
 .kseta-expect__title {
     text-align: center;
@@ -29,6 +29,8 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .kseta-expect__section {

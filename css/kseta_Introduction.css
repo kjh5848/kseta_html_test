@@ -1,84 +1,116 @@
-/* Base Block */
+/* 새로운 협회소개 섹션 디자인 */
 .kseta_intro {
-    font-family: 'Pretendard', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    line-height: 1.6;
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-/* Container Block */
-.kseta_intro-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-/* Title Block */
+/* 제목 스타일 */
 .kseta_intro-title {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 50px;
+    position: relative;
 }
 
 .kseta_intro-title__main {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #1a365d;
-    padding: 1rem 3rem;
-    border-bottom: 2px solid #1a365d;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #382f83; /* 기존 KSETA 브랜드 색상 */
     display: inline-block;
+    padding-bottom: 15px;
+    margin: 0;
+    position: relative;
 }
 
-/* Content Block */
-.kseta_intro-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.kseta_intro-title__main::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #382f83, #6c63ff);
+    border-radius: 2px;
 }
 
-/* Card Block */
-/*.kseta_intro-card {*/
-/*    background: white;*/
-/*    border-radius: 0.5rem;*/
-/*    overflow: hidden;*/
-/*    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-/*    transition: all 0.3s ease; !* 부드러운 전환 효과 추가 *!*/
-/*}*/
+/* 콘텐츠 영역 */
+.kseta_intro-container {
+    max-width: 1200px;
+    margin: 60px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
 
-/*.kseta_intro-card:hover {*/
-/*    transform: translateY(-5px); !* 위로 5px 이동 *!*/
-/*    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); !* 그림자 더 강조 *!*/
-/*}*/
+/* 카드 스타일 */
+.kseta_intro-card {
+    background: linear-gradient(145deg, #ffffff, #f5f7ff);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(56, 47, 131, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
 
+.kseta_intro-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(56, 47, 131, 0.12);
+}
+
+/* 카드 헤더 */
 .kseta_intro-card__header {
-    /*background-color: #1a365d;*/
-    color: #1a365d;
-    /*padding: 1rem 1.5rem;*/
-    margin-bottom: var(--margin-bottom-sm);
+    background: linear-gradient(135deg, #382f83, #4a4475);
+    padding: 20px 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.kseta_intro-card__header::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
 }
 
 .kseta_intro-card__title {
-    font-size: 1.25rem;
-    font-weight: bold;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
     margin: 0;
+    position: relative;
+    z-index: 1;
 }
 
+/* 카드 본문 */
 .kseta_intro-card__body {
-    padding: 1.5rem;
-    word-wrap: break-word;
-    word-break: keep-all; /* 단어 단위로 줄바꿈 */
-    background: gainsboro;
+    padding: 30px;
+    background: transparent;
 }
 
-/* Objectives Block */
+.kseta_intro-card__body p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+/* 목표 리스트 스타일 */
 .kseta_intro-objectives {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .kseta_intro-objectives__item {
     display: flex;
     align-items: flex-start;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 25px;
 }
 
 .kseta_intro-objectives__item:last-child {
@@ -86,17 +118,18 @@
 }
 
 .kseta_intro-objectives__number {
-    background-color: #06b6d4;
+    min-width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #382f83, #4a4475);
     color: white;
-    width: 3rem;
-    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    flex-shrink: 0;
+    border-radius: 12px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-right: 20px;
+    box-shadow: 0 5px 15px rgba(56, 47, 131, 0.2);
 }
 
 .kseta_intro-objectives__content {
@@ -104,63 +137,58 @@
 }
 
 .kseta_intro-objectives__text {
-    margin-bottom: 0.5rem;
-    color: #4a5568;
-    font-size: 1rem;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.6;
+    font-size: 1.05rem;
 }
 
 .kseta_intro-objectives__text:last-child {
     margin-bottom: 0;
 }
 
-/* Responsive Design */
+/* 반응형 디자인 */
 @media (max-width: 768px) {
     .kseta_intro-container {
-        padding: 1rem;
+        margin: 40px auto;
+        padding: 30px 15px;
     }
 
     .kseta_intro-title__main {
-        font-size: 1.5rem;
-        padding: 0.75rem 2rem;
+        font-size: 1.8rem;
     }
 
-    .kseta_intro-objectives__item {
-        gap: 1rem;
+    .kseta_intro-content {
+        grid-template-columns: 1fr;
     }
 
-    .kseta_intro-objectives__number {
-        width: 2.5rem;
-        height: 2.5rem;
-        font-size: 1.25rem;
+    .kseta_intro-card__title {
+        font-size: 1.4rem;
     }
 }
 
 @media (max-width: 480px) {
-    .kseta_intro-title {
-        font-size: 2.5rem;
-    }
-
     .kseta_intro-title__main {
-        font-size: 1.25rem;
-        padding: 0.5rem 1.5rem;
-    }
-
-    .kseta_intro-objectives__text {
-        font-size: 1.1rem;
+        font-size: 1.6rem;
     }
 
     .kseta_intro-card__header {
-        padding: 0.75rem 1rem;
+        padding: 15px 20px;
     }
 
     .kseta_intro-card__body {
-        padding: 1rem;
-        font-size: 1.2rem;
-
+        padding: 20px;
     }
 
-    .kseta_intro-objectives__item {
-        flex-direction: column;
-        gap: 0.5rem;
+    .kseta_intro-objectives__number {
+        min-width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        margin-right: 15px;
+    }
+
+    .kseta_intro-card__body p,
+    .kseta_intro-objectives__text {
+        font-size: 0.95rem;
     }
 }

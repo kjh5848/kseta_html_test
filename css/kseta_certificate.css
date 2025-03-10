@@ -1,6 +1,4 @@
 .kseta-certificate {
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 60px 20px;
     background-color: #f8f9fa;
     text-align: center;
@@ -26,10 +24,12 @@
 }
 
 .kseta-certificate__container {
+    max-width: 1200px;
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2열 */
     gap: 20px;
     padding-top: 20px;
+    margin: 0 auto;
 }
 
 .kseta-certificate__button {
